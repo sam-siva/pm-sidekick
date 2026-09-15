@@ -3,6 +3,7 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.prebuilt import ToolNode
 from langgraph.graph import MessagesState
 from agent.planner.planner_agent import generate_plan
+from agent.planner.mstracker_agent import track_milestone
 from agent.planner.reporter_agent import generate_report
 from utils.logger import _logger
 
@@ -10,10 +11,12 @@ workflow = StateGraph(MessagesState)
 
 # Define the nodes to cycle between
 workflow.add_node("generate_plan", generate_plan)
+workflow.add_node("track_milestone", track_milestone)
 workflow.add_node("generate_report", generate_report)
-workflow.add_edge(START, "generate_plan")
-workflow.add_edge("generate_plan", "generate_report")
-workflow.add_edge("generate_plan", END)
+workflow.add_edge(START, "track_milestone")
+#workflow.add_edge("generate_plan", "track_milestone")
+workflow.add_edge("track_milestone", "generate_report")
+workflow.add_edge("generate_report", END)
 
 graph = workflow.compile()
 
@@ -24,8 +27,8 @@ def run_agentic_rag() -> None:
             "messages": [
                 {
                     "role": "user",
-                    "content": "generate project information for the current month, "
-                    "for the stakehoder in the exective level in powerpoint format",
+                    "content": "generate project plan mation for the current month, "
+                    "for the stakehoder in the exective level in PDF format",
                 }
             ]
         },
