@@ -36,12 +36,15 @@ _LOADERS = {
 }
 
 
-def load_resources(directory: str | Path = RESOURCES_DIR) -> list[Document]:
-    """Load every supported file in `directory` into a list of Documents."""
+def load_resources(
+    directory: str | Path = RESOURCES_DIR, only: set[str] | None = None
+) -> list[Document]:
+    """Load every supported file in `directory` into a list of Documents.
+    When `only` is given, load just the files with those names."""
     directory = Path(directory)
     documents = []
     for path in sorted(directory.iterdir()):
-        if not path.is_file():
+        if not path.is_file() or (only is not None and path.name not in only):
             continue
         loader = _LOADERS.get(path.suffix.lower())
         if loader is None:

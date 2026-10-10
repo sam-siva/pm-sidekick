@@ -1,0 +1,14 @@
+# Secrets — real keys live only in .env (see .env.example)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local artefacts
+output/
+*.log
+.DS_Store

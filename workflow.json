@@ -1,0 +1,240 @@
+{
+  "nodes": [
+    {
+      "id": "__start__",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "__start__"
+      }
+    },
+    {
+      "id": "identify_intent",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "identify_intent"
+      }
+    },
+    {
+      "id": "generate_plan",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "generate_plan"
+      }
+    },
+    {
+      "id": "track_risk",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "track_risk"
+      }
+    },
+    {
+      "id": "track_milestone",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "track_milestone"
+      }
+    },
+    {
+      "id": "generate_status",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "generate_status"
+      }
+    },
+    {
+      "id": "generate_stakeholder_update",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "generate_stakeholder_update"
+      }
+    },
+    {
+      "id": "ask_clarifying_questions",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "ask_clarifying_questions"
+      }
+    },
+    {
+      "id": "unsupported_request",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "unsupported_request"
+      }
+    },
+    {
+      "id": "generate_report",
+      "type": "runnable",
+      "data": {
+        "id": [
+          "langgraph",
+          "_internal",
+          "_runnable",
+          "RunnableCallable"
+        ],
+        "name": "generate_report"
+      }
+    },
+    {
+      "id": "__end__"
+    }
+  ],
+  "edges": [
+    {
+      "source": "__start__",
+      "target": "identify_intent"
+    },
+    {
+      "source": "generate_plan",
+      "target": "__end__",
+      "conditional": true
+    },
+    {
+      "source": "generate_plan",
+      "target": "generate_report",
+      "conditional": true
+    },
+    {
+      "source": "generate_stakeholder_update",
+      "target": "__end__",
+      "conditional": true
+    },
+    {
+      "source": "generate_stakeholder_update",
+      "target": "generate_report",
+      "conditional": true
+    },
+    {
+      "source": "generate_status",
+      "target": "__end__",
+      "conditional": true
+    },
+    {
+      "source": "generate_status",
+      "target": "generate_report",
+      "conditional": true
+    },
+    {
+      "source": "identify_intent",
+      "target": "ask_clarifying_questions",
+      "conditional": true
+    },
+    {
+      "source": "identify_intent",
+      "target": "generate_plan",
+      "conditional": true
+    },
+    {
+      "source": "identify_intent",
+      "target": "generate_stakeholder_update",
+      "conditional": true
+    },
+    {
+      "source": "identify_intent",
+      "target": "generate_status",
+      "conditional": true
+    },
+    {
+      "source": "identify_intent",
+      "target": "track_milestone",
+      "conditional": true
+    },
+    {
+      "source": "identify_intent",
+      "target": "track_risk",
+      "conditional": true
+    },
+    {
+      "source": "identify_intent",
+      "target": "unsupported_request",
+      "conditional": true
+    },
+    {
+      "source": "track_milestone",
+      "target": "__end__",
+      "conditional": true
+    },
+    {
+      "source": "track_milestone",
+      "target": "generate_report",
+      "conditional": true
+    },
+    {
+      "source": "track_risk",
+      "target": "__end__",
+      "conditional": true
+    },
+    {
+      "source": "track_risk",
+      "target": "generate_report",
+      "conditional": true
+    },
+    {
+      "source": "ask_clarifying_questions",
+      "target": "__end__"
+    },
+    {
+      "source": "generate_report",
+      "target": "__end__"
+    },
+    {
+      "source": "unsupported_request",
+      "target": "__end__"
+    }
+  ]
+}

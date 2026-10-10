@@ -1,0 +1,41 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	identify_intent(identify_intent)
+	generate_plan(generate_plan)
+	track_risk(track_risk)
+	track_milestone(track_milestone)
+	generate_status(generate_status)
+	generate_stakeholder_update(generate_stakeholder_update)
+	ask_clarifying_questions(ask_clarifying_questions)
+	unsupported_request(unsupported_request)
+	generate_report(generate_report)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> identify_intent;
+	generate_plan -.-> __end__;
+	generate_plan -.-> generate_report;
+	generate_stakeholder_update -.-> __end__;
+	generate_stakeholder_update -.-> generate_report;
+	generate_status -.-> __end__;
+	generate_status -.-> generate_report;
+	identify_intent -.-> ask_clarifying_questions;
+	identify_intent -.-> generate_plan;
+	identify_intent -.-> generate_stakeholder_update;
+	identify_intent -.-> generate_status;
+	identify_intent -.-> track_milestone;
+	identify_intent -.-> track_risk;
+	identify_intent -.-> unsupported_request;
+	track_milestone -.-> __end__;
+	track_milestone -.-> generate_report;
+	track_risk -.-> __end__;
+	track_risk -.-> generate_report;
+	ask_clarifying_questions --> __end__;
+	generate_report --> __end__;
+	unsupported_request --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
